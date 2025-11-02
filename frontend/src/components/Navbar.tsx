@@ -19,35 +19,38 @@ const Navbar = () => {
   ];
 
   const handleNavClick = (href: string) => {
-    if (href === "#register") {
-      setIsRegistrationOpen(true);
-    } else {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: "smooth" });
-    }
+    const element = document.querySelector(href);
+    element?.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
   };
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
+      <nav className="fixed top-0 w-full z-50 glass-effect border-b border-primary/20 shadow-lg">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center gap-3">
               <a
                 href="#home"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("#home");
                 }}
-                className="text-2xl font-bold gradient-text cursor-pointer"
+                className="cursor-pointer flex items-center gap-3 group"
               >
-                EQUILIBRIA 26
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_venue-preview/artifacts/asxzw3jb_IMG-20251017-WA0057.jpg" 
+                  alt="Equilibria 26" 
+                  className="h-12 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+                <span className="text-2xl font-bold gradient-text hidden md:inline-block">
+                  EQUILIBRIA 26
+                </span>
               </a>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -56,14 +59,14 @@ const Navbar = () => {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className="px-3 py-2 rounded-md text-sm font-medium text-foreground hover:text-primary hover:bg-muted transition-all duration-200 cursor-pointer"
+                  className="px-4 py-2 rounded-lg text-sm font-semibold text-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer"
                 >
                   {item.name}
                 </a>
               ))}
               <Button
                 onClick={() => setIsRegistrationOpen(true)}
-                className="ml-2 bg-accent hover:bg-accent/90 hover-scale"
+                className="ml-3 bg-gradient-to-r from-coral to-accent hover:from-coral/90 hover:to-accent/90 hover-scale text-white font-semibold rounded-full px-6"
                 size="sm"
               >
                 Register
@@ -71,13 +74,14 @@ const Navbar = () => {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsOpen(!isOpen)}
+                className="hover:bg-primary/10"
               >
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isOpen ? <X className="h-6 w-6 text-primary" /> : <Menu className="h-6 w-6 text-primary" />}
               </Button>
             </div>
           </div>
@@ -85,8 +89,8 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-border">
+          <div className="lg:hidden animate-fade-in bg-background/95 backdrop-blur-lg border-t border-primary/20">
+            <div className="px-4 pt-2 pb-4 space-y-1">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -95,7 +99,7 @@ const Navbar = () => {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-muted transition-all duration-200 cursor-pointer"
+                  className="block px-4 py-3 rounded-lg text-base font-semibold text-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer"
                 >
                   {item.name}
                 </a>
@@ -105,7 +109,7 @@ const Navbar = () => {
                   setIsRegistrationOpen(true);
                   setIsOpen(false);
                 }}
-                className="w-full bg-accent hover:bg-accent/90 mt-2"
+                className="w-full bg-gradient-to-r from-coral to-accent hover:from-coral/90 hover:to-accent/90 text-white font-semibold rounded-full mt-3"
               >
                 Register
               </Button>
