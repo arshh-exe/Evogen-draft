@@ -12,7 +12,8 @@ const Events = () => {
         "Q&A session with panel",
         "Best paper awards",
         "Publication opportunities"
-      ]
+      ],
+      gradient: "from-primary to-secondary"
     },
     {
       icon: Image,
@@ -23,7 +24,8 @@ const Events = () => {
         "Interactive discussions",
         "Best poster awards",
         "Networking opportunities"
-      ]
+      ],
+      gradient: "from-secondary to-primary"
     },
     {
       icon: Presentation,
@@ -34,7 +36,8 @@ const Events = () => {
         "Practical demonstrations",
         "Certificate of participation",
         "Limited seats available"
-      ]
+      ],
+      gradient: "from-coral to-accent"
     },
     {
       icon: Users,
@@ -45,18 +48,19 @@ const Events = () => {
         "Career guidance sessions",
         "Interactive Q&A",
         "Networking with experts"
-      ]
+      ],
+      gradient: "from-accent to-coral"
     }
   ];
 
   return (
-    <section id="events" className="py-20 bg-background">
+    <section id="events" className="py-24 bg-gradient-to-br from-muted/30 via-background to-muted/20 scientific-pattern">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
             Conference Events
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-6" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-secondary to-coral mx-auto mb-6" />
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Participate in diverse events designed to showcase research, foster learning, and build connections
           </p>
@@ -66,26 +70,27 @@ const Events = () => {
           {events.map((event, index) => (
             <Card
               key={index}
-              className="hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/50 animate-fade-in"
+              className="hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-primary/20 hover:border-primary/40 animate-fade-in bg-card/80 backdrop-blur group overflow-hidden"
               style={{ animationDelay: `${index * 100}ms` }}
             >
+              <div className={`h-1 bg-gradient-to-r ${event.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
               <CardHeader>
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 bg-primary/10 rounded-lg">
-                    <event.icon className="w-8 h-8 text-primary" />
+                  <div className={`p-4 bg-gradient-to-br ${event.gradient} rounded-xl group-hover:scale-110 transition-transform duration-300`}>
+                    <event.icon className="w-8 h-8 text-white" />
                   </div>
-                  <CardTitle className="text-2xl">{event.title}</CardTitle>
+                  <CardTitle className="text-2xl text-primary">{event.title}</CardTitle>
                 </div>
-                <CardDescription className="text-base">
+                <CardDescription className="text-base text-muted-foreground leading-relaxed">
                   {event.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {event.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="text-accent mt-1">•</span>
-                      <span className="text-muted-foreground">{detail}</span>
+                    <li key={idx} className="flex items-start gap-3 group/item">
+                      <span className="text-coral mt-1 font-bold text-lg">•</span>
+                      <span className="text-muted-foreground group-hover/item:text-foreground transition-colors">{detail}</span>
                     </li>
                   ))}
                 </ul>
