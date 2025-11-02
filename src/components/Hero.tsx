@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin } from "lucide-react";
 import heroImage from "@/assets/hero-biology.jpg";
+import RegistrationModal from "./RegistrationModal";
 
 const Hero = () => {
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+
   return (
     <section
       id="home"
@@ -54,7 +58,7 @@ const Hero = () => {
             <Button
               size="lg"
               className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 hover-scale"
-              onClick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => setIsRegistrationOpen(true)}
             >
               Register Now
             </Button>
@@ -68,6 +72,11 @@ const Hero = () => {
             </Button>
           </div>
         </div>
+
+        <RegistrationModal 
+          open={isRegistrationOpen} 
+          onOpenChange={setIsRegistrationOpen} 
+        />
       </div>
 
       {/* Scroll Indicator */}
